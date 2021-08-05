@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "multitarefas.h"
 
 /*
@@ -25,7 +26,6 @@ int buffer[TAM];
 semaforo_t mutex = {1, 0};
 semaforo_t vazio = {TAM, 0};
 semaforo_t cheio = {0, 0};
-
 
 
 
@@ -125,23 +125,15 @@ void tarefa_1(void)
 	{
 		//a++;
 		//TarefaContinua(2);
-               
-                if(cheio.contador == 0){
+                  SemaforoAguarda(&vazio);
                   //lock mutex
                   SemaforoAguarda(&mutex);
                   //printf("PRODUZINDO!: "); //############### NAO USAR PRINTF! ERRO DE MEMORIA!!!!! :@!!!
                   //enchendo buffer com funcao rand
-                  for(int i = 0; i<TAM; i++){
-                    buffer[i] = rand() % 10;
-                   // printf("%d", buffer[i]);
-                  }
-              
-             //       printf("\n");
-              
                   buffer[cheio.contador] = 1;
                   //unlock mutex
                   SemaforoLibera(&mutex);
-            }
+                  SemaforoLibera(&cheio);
 	}
         
 
