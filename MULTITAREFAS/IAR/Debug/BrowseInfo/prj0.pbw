@@ -3945,7 +3945,7 @@
     "display": "void HardFault_Handler(void)",
     "location": {
       "column": "12",
-      "line": "96",
+      "line": "97",
       "path": "C:\\Users\\VEMF\\Documents\\GitHub\\elc1048d\\MULTITAREFAS\\IAR\\cpu-port.c"
     },
     "name": "HardFault_Handler",
